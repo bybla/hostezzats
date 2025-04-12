@@ -1,0 +1,4 @@
+// Project: Hostezza Discord Bot
+// Created by: bybla
+// Created on: 2025-04-11
+// Descripton: Тут будет более улучшеная версия Get/Fetch Методов для бота. Зачем? А вас это ебать не должно. 

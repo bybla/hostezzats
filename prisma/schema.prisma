@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" 
+  url      = "file:../databases/database.db"
+  
+}
+
+model User {
+  id           String     @id @default(cuid())
+  discordId    String     @unique
+  username     String
+  reportsMade  Report[]   @relation("Reporter")  // Жалобы, которые пользователь подал
+  reportsGot   Report[]   @relation("Reported")  // Жалобы, которые пользователь получил
+  moderated    Report[]   @relation("Moderator") // Жалобы, которые пользователь модерировал
+  createdAt    DateTime   @default(now())
+}
+
+model Report {
+  id           String     @id @default(cuid())
+  reason       String
+  verdict      String?
+  
+  // Тот, кто подал жалобу
+  reporterId   String
+  reporter     User       @relation("Reporter", fields: [reporterId], references: [id])
+  
+  // Тот, на кого пожаловались
+  reportedId   String
+  reported     User       @relation("Reported", fields: [reportedId], references: [id])
+  
+  // Модератор, который обработал
+  moderatorId  String?
+  moderator    User?      @relation("Moderator", fields: [moderatorId], references: [id])
+  
+  createdAt    DateTime   @default(now())
+  closedAt     DateTime?
+}

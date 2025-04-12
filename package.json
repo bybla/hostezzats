@@ -1,0 +1,34 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "main": "dist/bot.js",
+  "scripts": {
+    "dev": "tsx watch src/bot.ts",
+    "start": "node dist/bot.js",
+    "build": "tsup src/bot.ts --minify --dts --clean",
+    "postinstall": "prisma generate && npx prisma migrate dev --name init && npx prisma migrate deploy",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "chalk": "^5.4.1",
+    "dayjs": "^1.11.13",
+    "discord-bot": "file:",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.5.0",
+    "prisma": "^6.6.0",
+    "util": "^0.12.5",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "@types/winston": "^2.4.4",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
