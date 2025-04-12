@@ -38,7 +38,7 @@ export class StatusManager {
         // Обновляем статус каждую минуту
         this.updateInterval = setInterval(() => {
             this.updateRandomStatus();
-        }, 60_000);
+        }, 120_000);
     }
 
     private async refreshMemberCache() {
